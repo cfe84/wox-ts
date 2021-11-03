@@ -3,7 +3,7 @@ import { JsonRPCAction } from "./JsonRPCAction";
 import { Logger } from "./Logger";
 
 export class WoxQueryProcessor {
-  constructor(private handler: IWoxQueryHandler, private logger: Logger) {}
+  constructor(private handler: IWoxQueryHandler, private logger?: Logger) { }
 
   async processFromCommandLineAsync(argv: string[]) {
     const request: JsonRPCAction = JSON.parse(argv[2]);
@@ -11,7 +11,9 @@ export class WoxQueryProcessor {
     if (response && response.result) {
       const serializedResponse = JSON.stringify(response);
       console.log(serializedResponse);
-      this.logger.log(serializedResponse);
+      if (this.logger) {
+        this.logger.log(serializedResponse);
+      }
     }
   }
 }

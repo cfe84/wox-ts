@@ -5,4 +5,8 @@ export interface ResultItem {
   Subtitle: string;
   IcoPath: string;
   JsonRPCAction: JsonRPCAction;
+  /**
+   * Higher is better
+   */
+  Score?: number;
 }
